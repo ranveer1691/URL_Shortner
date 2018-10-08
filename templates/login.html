@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+<form method="POST">
+    {# This hidden_tag is a CSRF security feature. #}
+    {{ form.hidden_tag() }}
+    <br> <br> <br><br>
+    <div class="container" style="width: 320px; margin-top: 5%;">
+  	<div class="form-group">
+    	{{ form.username.label }} {{ form.username(class="form-control",placeholder="Enter your username") }}<br>
+  	</div>
+  	<div class="form-group">
+    	{{ form.password.label }} {{ form.password(class="form-control",placeholder="Enter your password") }}<br>
+    </div>
+    <div class="form-group">
+      {% if mssg %}
+        <script type="text/javascript">
+          alert("Oops!! Error : {{ mssg }}")
+        </script>
+        <div class="alert alert-warning" style="margin-top: 4%;" role="alert">
+          {{mssg}}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endif %}
+    </div>
+        {{ form.submit(class="btn btn-lg btn-success btn-block") }}
+    </div>
+</form>
+{% endblock %}
